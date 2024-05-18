@@ -3,6 +3,8 @@ from PySide6.QtWidgets import QComboBox, QFileDialog, QHBoxLayout, QLabel, QMain
 from PySide6.QtGui import QAction
 
 import pyqtgraph as pg
+
+import platform
 import os
 
 
@@ -10,7 +12,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.filePath = os.path.expanduser('~')
+        self.filePath = getUserPath()
         print(self.filePath)
         self.setWindowTitle("HRVpyGUI")
 
@@ -86,3 +88,16 @@ def createPlot():
     plot.getPlotItem().setContentsMargins(10, 10, 10, 10)
 
     return plot
+
+
+def getUserPath():
+    if platform.system() == 'Windows':
+        path = os.path.expanduser('~user')
+
+    elif platform.system() in ('Linux', 'Darwin'):
+        path = os.path.expanduser('~')
+
+    else:
+        path = os.getcwd()
+
+    return path
