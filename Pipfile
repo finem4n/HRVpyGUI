@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyside6 = "==6.6.0"
+pyside6 = "*"
 pyqtgraph = "*"
 neurokit2 = "*"
 pyqtdarktheme = "*"
 pandas = "*"
 requests = "*"
+astropy = "*"
 
 [dev-packages]
 
