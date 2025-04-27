@@ -254,8 +254,17 @@ class MainWindow(QMainWindow):
             self.setRRiPlot()
 
     def evalHRV(self):
-        selectedPeaks = self.peaks.copy()
-        selectedPeaks["ECG_R_Peaks"] = selectedPeaks["ECG_R_Peaks"][self.x_min_index:self.x_max_index + 1]
+        # selectedPeaks = self.peaks.copy()
+        # selectedPeaks["ECG_R_Peaks"] = selectedPeaks["ECG_R_Peaks"][self.x_min_index:self.x_max_index + 1]
+
+        print(self.x_min_index)
+        npRRI = self.dfRR["RR Intervals [ms]"][self.x_min_index:self.x_max_index + 1].to_numpy()
+        npRRI_TIME = self.dfRR["Time [s]"][self.x_min_index:self.x_max_index + 1].to_numpy()
+        
+        selectedPeaks = {
+            "RRI": npRRI,
+            "RRI_TIME": npRRI_TIME
+        }
 
         timestamps = pd.DataFrame({'Marker Start [s]': [self.dfRR["Time [s]"][self.x_min_index]],
                                    'Marker Stop [s]': [self.dfRR["Time [s]"][self.x_max_index]]})
