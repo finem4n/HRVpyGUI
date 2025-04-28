@@ -302,6 +302,13 @@ class MainWindow(QMainWindow):
         for i in range(len(hrv_all)):
             print(hrv_all_renamed.loc[i])
 
+        # Change float precision
+        for col in hrv_all_renamed:
+            tmp = hrv_all_renamed[col][0]
+            if isinstance(tmp, float):
+                tmp = round(tmp, 2)
+                hrv_all_renamed[col][0] = tmp
+
         outputWindow = data_window.outputWidget(self.filename, hrv_all_renamed, detrended=self.detrended)
         outputWindow.exec()
 
