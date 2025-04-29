@@ -7,11 +7,11 @@ pipenv sync
 ```
 
 # Running app
-## HRVpyGUI
+## App for HRV Analysis
 ```
 pipenv run python src/app.py
 ```
-## pyBreathe
+## App for controlled breathing
 ```
 pipenv run python pyBreathe/app.py
 ```
